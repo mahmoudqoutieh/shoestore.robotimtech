@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "موقع بيت الرياضة: أحذية رياضية ورسمية",
-  "engines": { "node": ">=22.13" },
+  "engines": { "node": ">=20" },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
