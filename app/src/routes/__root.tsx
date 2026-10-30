@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { THEME_COLOR } from "../lib/brand";
 import { reportHiggsfieldError } from "../lib/higgsfield-error-reporting";
 // Page metadata (browser <title>/favicon + social og: tags) committed into the
 // repo by the marketplace meta API and read at BUILD time — no runtime fetch.
@@ -76,7 +77,7 @@ function buildHead(meta: AppMeta) {
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { name: "theme-color", content: "#061653" },
+      { name: "theme-color", content: THEME_COLOR },
       { title },
       { name: "description", content: description },
       { name: "author", content: "بيت الرياضة" },
