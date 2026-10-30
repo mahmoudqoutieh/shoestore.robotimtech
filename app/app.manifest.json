@@ -1,6 +1,0 @@
-{
-  "db": true,
-  "r2": true,
-  "kv": false,
-  "durableObject": null
-}
