@@ -1,24 +1,43 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { BrandMarquee } from "@/components/bayt/brand-marquee";
+import { Collection } from "@/components/bayt/collection";
+import { Services } from "@/components/bayt/services";
+import { SiteFooter } from "@/components/bayt/site-footer";
+import { SiteNav } from "@/components/bayt/site-nav";
+import { Visit } from "@/components/bayt/visit";
+import { Worlds } from "@/components/bayt/worlds";
 import { ScrollScrub } from "@/components/scroll-scrub/scroll-scrub";
+import { getSiteData } from "@/lib/site-data.functions";
 import { scrollScrubScenes, scrollScrubTheme } from "@/scroll-scrub-scenes";
 
+const DEFAULT_BRANDS =
+  "NIKE,ADIDAS,PUMA,NEW BALANCE,REEBOK,ASICS,SKECHERS,UNDER ARMOUR,FILA,CLARKS,GEOX,ALDO";
+
 export const Route = createFileRoute("/")({
-  // No title/description here on purpose: the home page inherits the site's
-  // editable page metadata from the root route (title/favicon/og), so a shared
-  // link to "/" shows the owner's values. Add a `head` here only to give a
-  // SPECIFIC page its own title/description.
+  loader: () => getSiteData(),
   component: Index,
 });
 
-// The whole page IS the journey: the scrub controller owns media time, while
-// every chapter stays server-rendered in ordinary semantic flow. Compose the
-// site's own nav and bespoke CTAs around <ScrollScrub />; the engine
-// deliberately ships no header, no shared button system, and no scroll hint.
 function Index() {
+  const { products, settings } = Route.useLoaderData();
+  const brands = (settings.brands || DEFAULT_BRANDS)
+    .split(",")
+    .map((b) => b.trim())
+    .filter(Boolean);
+
   return (
-    <main>
-      <ScrollScrub scenes={scrollScrubScenes} theme={scrollScrubTheme} />
-    </main>
+    <>
+      <SiteNav />
+      <main id="top">
+        <ScrollScrub scenes={scrollScrubScenes} theme={scrollScrubTheme} />
+        <BrandMarquee brands={brands} />
+        <Worlds />
+        <Collection products={products} whatsapp={settings.whatsapp} />
+        <Services />
+        <Visit settings={settings} />
+      </main>
+      <SiteFooter />
+    </>
   );
 }

@@ -21,6 +21,7 @@
 @import "./components/icon-tile/icon-tile.css";
 
 @import "tw-animate-css";
+@import "./bayt.css";
 /* shadcn v4 base (scrollbar/scroll-fade utilities, toast base) for src/components/ui */
 @import "shadcn/tailwind.css";
 
