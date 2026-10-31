@@ -759,90 +759,6 @@ html {
   }
 }
 
-/* ───── light hero (phones, and the instant before the desktop film mounts) ───── */
-.bh-hero {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  min-height: 100vh;
-  min-height: 100svh;
-  overflow: hidden;
-  background: var(--bh-deep);
-}
-.bh-hero__media {
-  position: absolute;
-  inset: 0;
-}
-.bh-hero__poster,
-.bh-hero__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 32%;
-}
-.bh-hero__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgb(6 22 83 / 0.55) 0%,
-    rgb(6 22 83 / 0) 28%,
-    rgb(6 22 83 / 0.55) 58%,
-    rgb(6 22 83 / 0.96) 100%
-  );
-}
-.bh-hero__copy {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 0.9rem;
-  width: 100%;
-  max-width: 40rem;
-  padding: 6rem var(--bh-gutter) calc(1.8rem + env(safe-area-inset-bottom));
-}
-.bh-hero__kicker {
-  color: var(--bh-sun);
-  font: 700 0.95rem var(--bh-display);
-}
-.bh-hero__title {
-  font-family: var(--bh-display);
-  font-weight: 700;
-  font-size: clamp(2.5rem, 12.5vw, 4.6rem);
-  line-height: 1.12;
-}
-.bh-hero__body {
-  max-width: 34ch;
-  color: var(--bh-mute);
-  font-size: 1.02rem;
-}
-.bh-hero__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-.bh-hero__tags li {
-  padding: 0.2rem 0.8rem;
-  border: 1px solid var(--bh-line);
-  border-radius: 999px;
-  color: var(--bh-paper);
-  font-size: 0.85rem;
-}
-.bh-hero__actions {
-  display: grid;
-  gap: 0.9rem;
-  justify-items: stretch;
-  margin-top: 0.6rem;
-}
-.bh-hero__actions .bh-run {
-  justify-content: space-between;
-}
-.bh-hero__actions .bh-visit {
-  justify-self: center;
-}
-
 /* ───── phones and touch screens: lighter, flatter, faster ───── */
 @media (max-width: 899px), (hover: none) {
   * {
@@ -974,4 +890,140 @@ html {
 
 .bh-world__img {
   mix-blend-mode: normal;
+}
+
+/* ───── phone hero: frames follow the finger ───── */
+.bh-fh {
+  position: relative;
+  height: 290vh;
+  height: 290svh;
+  background: var(--bh-deep);
+}
+.bh-fh__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: radial-gradient(120% 70% at 50% 28%, var(--bh-cobalt) 0%, var(--bh-deep) 72%);
+}
+.bh-fh__picture {
+  position: absolute;
+  inset: 8svh 0 auto 0;
+  aspect-ratio: 4 / 5;
+  max-height: 62svh;
+  will-change: transform;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 78%, transparent 100%);
+}
+.bh-fh__poster,
+.bh-fh__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bh-fh__text {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: grid;
+  gap: 0.8rem;
+  padding: 0 var(--bh-gutter) calc(1.4rem + env(safe-area-inset-bottom));
+}
+.bh-fh__intro {
+  display: grid;
+  gap: 0.3rem;
+  will-change: transform;
+}
+.bh-fh__kicker {
+  color: var(--bh-sun);
+  font: 700 0.9rem var(--bh-display);
+}
+.bh-fh__title {
+  font-family: var(--bh-display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 7.6vw, 2.3rem);
+  line-height: 1.2;
+}
+.bh-fh__caps {
+  position: relative;
+  min-height: 3rem;
+}
+.bh-fh__cap {
+  position: absolute;
+  inset: 0 0 auto 0;
+  color: var(--bh-paper);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  will-change: transform, opacity;
+}
+.bh-fh__cap b {
+  margin-inline-end: 0.5rem;
+  color: var(--bh-sun);
+  font-family: var(--bh-display);
+}
+.bh-fh__cap--b {
+  opacity: 0;
+}
+.bh-fh__actions {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: stretch;
+}
+.bh-fh__actions .bh-run {
+  justify-content: space-between;
+}
+.bh-fh__actions .bh-visit {
+  justify-self: center;
+}
+@media (min-width: 640px) {
+  .bh-fh__picture {
+    max-height: 66svh;
+    inset-inline: 15%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bh-fh {
+    height: 100svh;
+  }
+  .bh-fh__cap--b {
+    display: none;
+  }
+}
+
+/* brand strip: solid, readable text on both rows */
+.bh-marquee__row--rev .bh-marquee__track {
+  -webkit-text-stroke: 0;
+  color: var(--bh-cobalt);
+}
+.bh-marquee__track li::after {
+  background: var(--bh-deep);
+}
+
+/* phone hero: square picture, soft edges on all four sides */
+.bh-fh__picture {
+  aspect-ratio: 1 / 1;
+  inset: 9svh 0 auto 0;
+  max-height: none;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0, #000 14%, #000 80%, transparent 100%),
+    linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0, #000 14%, #000 80%, transparent 100%),
+    linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+  mask-composite: intersect;
+}
+@media (min-width: 640px) {
+  .bh-fh__picture {
+    max-height: 62svh;
+    inset-inline: 0;
+    margin-inline: auto;
+    width: min(62svh, 100%);
+  }
+}
+/* brand strip: the track must start at the left edge even on an RTL page */
+.bh-marquee__row {
+  direction: ltr;
 }
