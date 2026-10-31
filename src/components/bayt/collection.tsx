@@ -20,6 +20,12 @@ function orderLink(whatsapp: string | undefined, name: string): string {
   return `https://wa.me/${digits}?text=${text}`;
 }
 
+function smallSrc(image: string): string | null {
+  return image.startsWith("/assets/products/") && image.endsWith(".webp")
+    ? image.replace(".webp", "-sm.webp")
+    : null;
+}
+
 function Card({ product, whatsapp, index }: { product: Product; whatsapp?: string; index: number }) {
   const tilt = useTilt<HTMLDivElement>(14);
   const link = orderLink(whatsapp, product.name);
@@ -33,8 +39,9 @@ function Card({ product, whatsapp, index }: { product: Product; whatsapp?: strin
           decoding="async"
           height={1125}
           loading={index < 2 ? "eager" : "lazy"}
+          sizes="(min-width: 1180px) 22vw, (min-width: 760px) 30vw, 46vw"
           src={product.image}
-          style={{ animationDelay: `${(index % 6) * -0.9}s` }}
+          srcSet={smallSrc(product.image) ? `${smallSrc(product.image)} 480w, ${product.image} 900w` : undefined}
           width={900}
         />
       </div>

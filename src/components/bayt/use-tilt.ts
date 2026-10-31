@@ -5,6 +5,7 @@ export function useTilt<T extends HTMLElement>(max = 12) {
   const ref = useRef<T>(null);
 
   const onPointerMove = (event: PointerEvent<T>) => {
+    if (event.pointerType !== "mouse") return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();

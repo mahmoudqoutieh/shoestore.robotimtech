@@ -7,9 +7,8 @@ import { SiteFooter } from "@/components/bayt/site-footer";
 import { SiteNav } from "@/components/bayt/site-nav";
 import { Visit } from "@/components/bayt/visit";
 import { Worlds } from "@/components/bayt/worlds";
-import { ScrollScrub } from "@/components/scroll-scrub/scroll-scrub";
+import { Hero } from "@/components/bayt/hero";
 import { getSiteData } from "@/lib/site-data.functions";
-import { scrollScrubScenes, scrollScrubTheme } from "@/scroll-scrub-scenes";
 
 const DEFAULT_BRANDS =
   "NIKE,ADIDAS,PUMA,NEW BALANCE,REEBOK,ASICS,SKECHERS,UNDER ARMOUR,FILA,CLARKS,GEOX,ALDO";
@@ -30,7 +29,7 @@ function Index() {
     <>
       <SiteNav />
       <main id="top">
-        <ScrollScrub scenes={scrollScrubScenes} theme={scrollScrubTheme} />
+        <Hero />
         <BrandMarquee brands={brands} />
         <Worlds />
         <Collection products={products} whatsapp={settings.whatsapp} />

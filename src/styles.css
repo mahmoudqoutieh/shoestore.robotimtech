@@ -758,3 +758,220 @@ html {
     transition: none;
   }
 }
+
+/* ───── light hero (phones, and the instant before the desktop film mounts) ───── */
+.bh-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--bh-deep);
+}
+.bh-hero__media {
+  position: absolute;
+  inset: 0;
+}
+.bh-hero__poster,
+.bh-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 32%;
+}
+.bh-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(6 22 83 / 0.55) 0%,
+    rgb(6 22 83 / 0) 28%,
+    rgb(6 22 83 / 0.55) 58%,
+    rgb(6 22 83 / 0.96) 100%
+  );
+}
+.bh-hero__copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.9rem;
+  width: 100%;
+  max-width: 40rem;
+  padding: 6rem var(--bh-gutter) calc(1.8rem + env(safe-area-inset-bottom));
+}
+.bh-hero__kicker {
+  color: var(--bh-sun);
+  font: 700 0.95rem var(--bh-display);
+}
+.bh-hero__title {
+  font-family: var(--bh-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 12.5vw, 4.6rem);
+  line-height: 1.12;
+}
+.bh-hero__body {
+  max-width: 34ch;
+  color: var(--bh-mute);
+  font-size: 1.02rem;
+}
+.bh-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.bh-hero__tags li {
+  padding: 0.2rem 0.8rem;
+  border: 1px solid var(--bh-line);
+  border-radius: 999px;
+  color: var(--bh-paper);
+  font-size: 0.85rem;
+}
+.bh-hero__actions {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: stretch;
+  margin-top: 0.6rem;
+}
+.bh-hero__actions .bh-run {
+  justify-content: space-between;
+}
+.bh-hero__actions .bh-visit {
+  justify-self: center;
+}
+
+/* ───── phones and touch screens: lighter, flatter, faster ───── */
+@media (max-width: 899px), (hover: none) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  .bh-nav {
+    backdrop-filter: none;
+    background: linear-gradient(to bottom, var(--bh-deep) 0%, rgb(6 22 83 / 0.9) 60%, rgb(6 22 83 / 0));
+  }
+  .bh-nav__brand {
+    font-size: 1rem;
+  }
+  .bh-nav__cta {
+    padding: 0.5rem 1rem;
+    font-size: 0.88rem;
+  }
+  .bh-section {
+    padding-block: 3rem;
+  }
+  .bh-h2 {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+  .bh-marquee {
+    transform: none;
+    margin-block: 0;
+    padding: 1rem 0;
+  }
+  .bh-marquee__track {
+    font-size: 1.35rem;
+    will-change: transform;
+  }
+  .bh-world {
+    min-height: 19rem;
+    transform: none;
+  }
+  .bh-world__img {
+    mix-blend-mode: normal;
+    animation: none;
+    inset-inline-start: -14%;
+    width: 80%;
+  }
+  .bh-world__copy {
+    width: 62%;
+    padding: 1.2rem;
+  }
+  .bh-card__img {
+    animation: none;
+  }
+  .bh-card__stage {
+    transform: none;
+    border-radius: 1rem;
+  }
+  .bh-grid {
+    gap: 1.1rem 0.75rem;
+  }
+  .bh-card h3 {
+    font-size: 0.95rem;
+  }
+  .bh-card__sizes li:nth-child(n + 5) {
+    display: none;
+  }
+  .bh-card .bh-order {
+    min-height: 2.75rem;
+    padding: 0 0.6rem;
+    font-size: 0.88rem;
+  }
+  .bh-collection__head {
+    gap: 0.9rem;
+  }
+  .bh-chips {
+    width: 100%;
+  }
+  .bh-chip {
+    flex: 1;
+  }
+  .bh-visit-card {
+    border-radius: 1.3rem;
+  }
+  .bh-visit-card .bh-order {
+    justify-self: stretch;
+  }
+}
+
+/* worlds: copy and picture side by side, never overlapping */
+.bh-world {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 0;
+}
+.bh-world__img {
+  position: static;
+  width: 100%;
+  height: 100%;
+  max-height: 26rem;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+.bh-world__copy {
+  width: auto;
+}
+@media (max-width: 899px), (hover: none) {
+  .bh-world {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .bh-world__img {
+    order: -1;
+    width: 100%;
+    height: 15rem;
+    max-height: none;
+    inset: auto;
+  }
+  .bh-world__copy {
+    width: auto;
+    padding: 1.2rem 1.3rem 1.5rem;
+  }
+  .bh-nav {
+    background: var(--bh-deep);
+    border-bottom: 1px solid var(--bh-line);
+  }
+  .bh-hero__copy {
+    padding-top: 5.5rem;
+  }
+}
+
+.bh-world__img {
+  mix-blend-mode: normal;
+}

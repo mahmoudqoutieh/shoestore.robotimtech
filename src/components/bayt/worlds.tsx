@@ -26,7 +26,17 @@ function World({
           <ArrowUpLeft aria-hidden="true" size={18} strokeWidth={2.6} />
         </span>
       </div>
-      <img alt="" className="bh-world__img" decoding="async" height={1125} loading="lazy" src={image} width={900} />
+      <img
+        alt=""
+        className="bh-world__img"
+        decoding="async"
+        height={1125}
+        loading="lazy"
+        sizes="(min-width: 820px) 40vw, 60vw"
+        src={image}
+        srcSet={`${image.replace(".webp", "-sm.webp")} 480w, ${image} 900w`}
+        width={900}
+      />
     </a>
   );
 }
